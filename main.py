@@ -54,8 +54,8 @@ def main():
             k = input_int()
             check_input(n, k)
             prothNum = get_proth_num(n, k)
-            isProth = is_prime_num(prothNum)
-            if isProth:
+            isPrime = is_prime_num(prothNum)
+            if isPrime:
                 print(str(prothNum) + " is a prime number")
             else:
                 print(str(prothNum) + " isn't a prime number")
