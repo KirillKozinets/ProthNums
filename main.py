@@ -1,7 +1,7 @@
 import random
 import decimal
 
-decimal.getcontext().prec = 10000
+decimal.getcontext().prec = 9100000000000000000
 
 
 def input_int():
