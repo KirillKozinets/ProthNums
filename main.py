@@ -1,4 +1,7 @@
 import random
+import decimal
+
+decimal.getcontext().prec = 10000
 
 
 def input_int():
@@ -24,7 +27,7 @@ def get_proth_num(n, k):
 def is_prime_num(prothNum):
     a = random.randrange(2, prothNum)
     if (a - 1) % prothNum != 0:
-        b = pow(a, (prothNum - 1) / 2) % prothNum
+        b = a ** decimal.Decimal((prothNum - 1) / 2) % prothNum
         if (b + 1) % prothNum == 0:
             return True
         elif (b - 1) % prothNum == 0:
