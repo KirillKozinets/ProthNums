@@ -4,8 +4,7 @@ import random
 def input_int():
     while not (num := input()).isdigit():
         print("You must enter a number")
-    else:
-        return int(num)
+    return int(num)
 
 
 def check_input(n, k):
