@@ -1,23 +1,22 @@
 import random
-import decimal
-
-decimal.getcontext().prec = 9100000000000000000
 
 
 def input_int():
-    num = input()
-    if num.isdigit():
+    while not (num := input()).isdigit():
+        print("You must enter a number")
+    else:
         return int(num)
-    raise TypeError("You must enter a number")
 
 
 def check_input(n, k):
     if n < 0:
-        raise Exception("n must be > 0")
-    if k <= 0 or k >= 2 ** n:
-        raise Exception("k must be between 0 and 2 raised to power n")
-    if k % 2 == 0:
-        raise Exception("k must be odd")
+        print("n must be > 0")
+    elif k <= 0 or k >= 2 ** n:
+        print("k must be between 0 and 2 raised to power n")
+    elif k % 2 == 0:
+        print("k must be odd")
+    else:
+        return True
 
 
 def get_proth_num(n, k):
@@ -26,7 +25,7 @@ def get_proth_num(n, k):
 
 def is_prime_num(prothNum):
     a = random.randrange(2, prothNum)
-    b = a ** decimal.Decimal((prothNum - 1) / 2) % prothNum
+    b = a ** ((prothNum - 1) // 2) % prothNum
     if (b + 1) % prothNum == 0:
         return True
     elif (b - 1) % prothNum == 0:
@@ -44,24 +43,19 @@ def is_need_continue():
 
 
 def main():
-    while True:
-        try:
-            print("n: ", end='')
-            n = input_int()
-            print("k: ", end='')
-            k = input_int()
-            check_input(n, k)
+    while is_need_continue():
+        print("n: ", end='')
+        n = input_int()
+        print("k: ", end='')
+        k = input_int()
+        if check_input(n, k):
             prothNum = get_proth_num(n, k)
             isPrime = is_prime_num(prothNum)
             if isPrime:
                 print(str(prothNum) + " is a prime number")
             else:
                 print(str(prothNum) + " isn't a prime number")
-            is_continue = is_need_continue()
-            if not is_continue:
-                return
-        except Exception as ex:
-            print(str(ex))
 
 
 main()
+
