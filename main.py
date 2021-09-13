@@ -11,34 +11,34 @@ def input_int():
     return int(num)
 
 
-def check_input(n, k):
+def check_input(num_n, num_k):
     """ Проверяет удовлетворяют ли n и k словиям
         0 <= n , 0 < k < 2 в степени n, k - чётное
     """
-    if n < 0:
+    if num_n < 0:
         print("n must be > 0")
         return False
-    if k <= 0 or k >= 2 ** n:
+    if num_k <= 0 or num_k >= 2 ** num_n:
         print("k must be between 0 and 2 raised to power n")
         return False
-    if k % 2 == 0:
+    if num_k % 2 == 0:
         print("k must be odd")
         return False
     return True
 
 
-def get_proth_num(n, k):
+def get_proth_num(num_n, num_k):
     """ Вычисляет число прота по формуле  p = k * (2 в степени n) + 1 """
-    return k * pow(2, n) + 1
+    return num_k * pow(2, num_n) + 1
 
 
 def is_prime_num(proth_num):
     """ Проверяет является ли число прота простым """
-    a = random.randrange(2, proth_num)
-    b = a ** ((proth_num - 1) // 2) % proth_num
-    if (b + 1) % proth_num == 0:
+    num_a = random.randrange(2, proth_num)
+    num_b = num_a ** ((proth_num - 1) // 2) % proth_num
+    if (num_b + 1) % proth_num == 0:
         return True
-    if (b - 1) % proth_num == 0:
+    if (num_b - 1) % proth_num == 0:
         return is_prime_num(proth_num)
     return False
 
@@ -53,14 +53,15 @@ def is_need_continue():
 
 
 def main():
-    """ Вычисляет число прота и выводит информацию о том является ли это число простым"""
+    """ Вычисляет число прота и выводит информацию о
+    том является ли это число простым"""
     while is_need_continue():
         print("n: ", end='')
-        n = input_int()
+        num_n = input_int()
         print("k: ", end='')
-        k = input_int()
-        if check_input(n, k):
-            proth_num = get_proth_num(n, k)
+        num_k = input_int()
+        if check_input(num_n, num_k):
+            proth_num = get_proth_num(num_n, num_k)
             is_prime = is_prime_num(proth_num)
             if is_prime:
                 print(str(proth_num) + " is a prime number")
